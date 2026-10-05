@@ -1,0 +1,54 @@
+@import "@fontsource-variable/inter";
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+    /* one brand color */
+    --color-brand-50: #fdf2f2;
+    --color-brand-100: #fbe3e3;
+    --color-brand-600: #b42323;
+    --color-brand-700: #971c1c;
+
+    /* neutrals */
+    --color-ink: #1c1917;
+    --color-muted: #6b6560;
+    --color-line: #e7e3df;
+    --color-paper: #faf9f7;
+}
+
+body {
+    @apply bg-paper text-ink font-sans antialiased;
+}
+
+dialog::backdrop {
+    background: rgb(28 25 23 / 0.45);
+}
+
+/* Shared building blocks. Same class = same look everywhere. */
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors
+               focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2
+               disabled:cursor-not-allowed disabled:opacity-60;
+    }
+    .btn-primary   { @apply bg-brand-600 text-white hover:bg-brand-700; }
+    .btn-secondary { @apply border border-line bg-white text-ink hover:bg-stone-50; }
+    .btn-danger    { @apply border border-brand-600 bg-white text-brand-700 hover:bg-brand-50; }
+    .btn-sm        { @apply px-3 py-1.5 text-xs; }
+
+    .label { @apply mb-1 block text-sm font-medium; }
+    .input {
+        @apply block w-full rounded-md border border-line bg-white px-3 py-2 text-sm placeholder:text-stone-400
+               focus:border-brand-600 focus:outline-none focus:ring-1 focus:ring-brand-600;
+    }
+    .input-error { @apply border-brand-600; }
+    .hint        { @apply mt-1 text-xs text-muted; }
+    .field-error { @apply mt-1 text-xs text-brand-700; }
+
+    .data-table { @apply w-full text-left text-sm; }
+    .data-table th  { @apply border-b border-line bg-stone-50 px-4 py-2.5 text-xs font-medium text-muted; }
+    .data-table td  { @apply border-b border-line px-4 py-3; }
+    .data-table tbody tr:last-child td { @apply border-b-0; }
+    .data-table tbody tr:hover { @apply bg-stone-50; }
+}
