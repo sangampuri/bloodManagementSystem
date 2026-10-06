@@ -1,5 +1,5 @@
 @php
-    $isAdmin = request()->is('admin', 'admin/*');
+    $isAdmin = auth()->user()?->isAdmin() ?? false;
 @endphp
 <!DOCTYPE html>
 <html lang="en">

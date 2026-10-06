@@ -18,6 +18,7 @@
             ['Blood Availability', 'availability',    'droplets'],
             ['Blood Requests',     'requests/create', 'clipboard-plus'],
             ['My Requests',        'my-requests',     'clipboard-list'],
+            ['Notifications',      'notifications',   'bell'],
         ];
 @endphp
 

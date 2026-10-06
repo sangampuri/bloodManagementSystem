@@ -19,8 +19,8 @@ class InventoryController extends Controller
                 $q->where('blood_group', $request->query('blood_group'))
             )
             ->when($request->filled('search'), fn ($q) =>
-                $q->where('batch_code', 'like', '%' . $request->query('search') . '%')
-            )
+            $q->where('batch_code', 'like', \App\Support\Search::likeTerm($request->query('search')))
+)
             ->when($request->query('expiry') === 'expired', fn ($q) =>
                 $q->whereDate('expiry_date', '<', today())
             )

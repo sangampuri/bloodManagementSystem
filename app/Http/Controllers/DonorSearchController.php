@@ -27,8 +27,8 @@ class DonorSearchController extends Controller
                 $q->where('donors.blood_group', $request->query('blood_group'))
             )
             ->when($request->filled('location'), fn ($q) =>
-                $q->where('donors.location', 'like', '%' . $request->query('location') . '%')
-            )
+    $q->where('donors.location', 'like', \App\Support\Search::likeTerm($request->query('location')))
+)
             ->when($request->boolean('available_only'), fn ($q) =>
                 $q->where('donors.is_available', true)
             )
